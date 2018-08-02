@@ -1,8 +1,8 @@
 package exceptionbound.com.viewpagerwithswipeanimationinandroid
 
 import android.os.Bundle
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,7 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewPager = findViewById(R.id.view_pager) as ViewPager
-        viewPager.adapter = CustomPagerAdapter(this)
+        view_pager.adapter = CustomPagerAdapter(supportFragmentManager)
     }
 }

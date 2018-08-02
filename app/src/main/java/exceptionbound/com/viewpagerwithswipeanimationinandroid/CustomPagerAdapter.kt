@@ -1,41 +1,20 @@
 package exceptionbound.com.viewpagerwithswipeanimationinandroid
 
-import android.content.Context
-import android.support.v4.view.PagerAdapter
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
 
 /**
  * Created by Boss on 12/17/2016.
  */
 
-class CustomPagerAdapter(private val mContext: Context) : PagerAdapter() {
+class CustomPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
-    override fun instantiateItem(collection: ViewGroup, position: Int): Any {
+    override fun getItem(position: Int): Fragment {
         val modelObject = ModelObject.values()[position]
-        val inflater = LayoutInflater.from(mContext)
-        val viewGroup = inflater.inflate(modelObject.layoutResId, collection, false) as ViewGroup
-        collection.addView(viewGroup)
-        return viewGroup
+        // Creating a new instance of our Fragment with this Model Object.
+        return AllButtonsFragment.newInstance(modelObject)
     }
 
-    override fun destroyItem(collection: ViewGroup, position: Int, view: Any) {
-        collection.removeView(view as View)
-    }
-
-    override fun getCount(): Int {
-        return ModelObject.values().size
-    }
-
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-
-        return view === `object`
-    }
-
-    override fun getPageTitle(position: Int): CharSequence {
-        val customPagerEnum = ModelObject.values()[position]
-        return mContext.getString(customPagerEnum.titleResId)
-    }
-
+    override fun getCount() = ModelObject.values().size
 }

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/holo_red_light"
     android:orientation="vertical"
-    tools:context=".AllButtons">
+    tools:context=".AllButtonsFragment">
 
 
 <TextView
